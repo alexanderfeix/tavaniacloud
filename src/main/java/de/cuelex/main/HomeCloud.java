@@ -5,6 +5,7 @@ import de.cuelex.logger.command.CommandExecuter;
 import de.cuelex.logger.thread.TavaniaThread;
 import de.cuelex.util.JSONWebDataHandler;
 import de.cuelex.util.VersionManager;
+import de.cuelex.util.api.GoogleAuthenticationHandler;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -30,6 +31,10 @@ public class HomeCloud {
     private TavaniaThread tavaniaThread = new TavaniaThread();
     public TavaniaThread getTavaniaThread() {
         return tavaniaThread;
+    }
+    private GoogleAuthenticationHandler googleAuthenticationHandler = new GoogleAuthenticationHandler();
+    public GoogleAuthenticationHandler getGoogleAuthenticationHandler() {
+        return googleAuthenticationHandler;
     }
     private CommandExecuter commandExecuter = new CommandExecuter();
     public CommandExecuter getCommandExecuter() {
