@@ -42,7 +42,6 @@ public class Launcher {
     public void start(){
         getInstance().cloudRunning = true;
         HomeCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
-        HomeCloud.getInstance().getJsonWebDataHandler().getDataFromWesbite("https://cuelex.de/version.json");
         HomeCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
         HomeCloud.getInstance().getCommandExecuter().implementCommands();
         while (true) {
