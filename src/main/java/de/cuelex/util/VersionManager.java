@@ -10,7 +10,7 @@ package de.cuelex.util;
 */
 public class VersionManager {
 
-    private String currentVersion = "A-0.0.1";
+    private String currentVersion = "A-0.0.2";
     public String getCurrentVersion() {
         return currentVersion;
     }
