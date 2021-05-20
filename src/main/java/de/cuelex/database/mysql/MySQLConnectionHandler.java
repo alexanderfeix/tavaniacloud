@@ -19,8 +19,9 @@ import java.sql.Statement;
 */
 public class MySQLConnectionHandler {
 
-    public Connection c = null;
+    public Connection connection;
     private String hostname;
+    private String database;
     private int port;
     private String username;
     private String password;
@@ -29,13 +30,10 @@ public class MySQLConnectionHandler {
      * Connecting to MySQL-Database
      */
     public void connect() {
-        hostname  = null;
-        port = 0;
-        username = null;
-        password = null;
         try {
-            c = DriverManager.getConnection("jdbc:mysql://" + hostname + ":" + port + "/TavaniaCloud?autoReconnect=true", username, password);
-        } catch (SQLException e) {
+            connection = DriverManager.getConnection("jdbc:mysql://" + hostname + ":" + port + "/" + database + "?autoReconnect=true", username, password);
+        } catch (SQLException  e) {
+            e.printStackTrace();
             ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, MySQLConnectionHandler.class, "Could not connect to MySQL-Database. Please check the config.json file.");
         }
     }
@@ -44,9 +42,9 @@ public class MySQLConnectionHandler {
      * Disconnecting from MySQL-Database
      */
     public void disconnect() {
-        if (c != null) {
+        if (connection != null) {
             try {
-                c.close();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -60,7 +58,7 @@ public class MySQLConnectionHandler {
      */
     public void query(String qry) {
         try {
-            Statement stmt = c.createStatement();
+            Statement stmt = connection.createStatement();
             stmt.executeUpdate(qry);
             stmt.close();
         } catch (SQLException ex) {
@@ -70,4 +68,52 @@ public class MySQLConnectionHandler {
         }
     }
 
+    /**
+     * Getters and setters
+     * @return private user-data
+     */
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public void setDatabase(String database) {
+        this.database = database;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

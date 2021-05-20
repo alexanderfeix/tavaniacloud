@@ -22,7 +22,10 @@ public class StartingThread implements Runnable{
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class,"Copyright 2020-2021 Alexander Feix");
         HomeCloud.getInstance().getLauncher().setStartingDate(HomeCloud.getInstance().getGregorianDate().toString());
         ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class,"Started HomeCloud successfully!");
-        authorize();
+        //authorize();
+        if(!HomeCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()){
+            HomeCloud.getInstance().getDatabaseHandler().configureDatabase();
+        }
     }
 
     private void authorize(){

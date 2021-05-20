@@ -258,6 +258,4 @@ public class JSONWebDataHandler {
         }
         return sb.toString();
     }
-
-
 }

@@ -1,5 +1,7 @@
 package de.cuelex.main;
 
+import de.cuelex.database.DatabaseHandler;
+import de.cuelex.database.mysql.MySQLConnectionHandler;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.command.CommandExecuter;
 import de.cuelex.logger.thread.TavaniaThread;
@@ -47,6 +49,15 @@ public class HomeCloud {
     public VersionManager versionManager = new VersionManager();
     public VersionManager getVersionManager() {
         return versionManager;
+    }
+    public MySQLConnectionHandler mySQLConnectionHandler = new MySQLConnectionHandler();
+    public MySQLConnectionHandler getMySQLConnectionHandler() {
+        return mySQLConnectionHandler;
+    }
+    public DatabaseHandler databaseHandler = new DatabaseHandler();
+
+    public DatabaseHandler getDatabaseHandler() {
+        return databaseHandler;
     }
 
     public static void main(String[] args) {
