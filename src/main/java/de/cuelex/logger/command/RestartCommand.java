@@ -16,7 +16,7 @@ import java.util.Scanner;
     
 */
 public class RestartCommand extends Command{
-    private HashMap<String, Boolean> confirmedRestarting = new HashMap<>();
+    private final HashMap<String, Boolean> confirmedRestarting = new HashMap<>();
     public RestartCommand(String name, String... alias) {
         super(name, alias);
     }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 */
 public class TavaniaThread {
 
-    private ArrayList<Thread> runningThreads = new ArrayList<>();
+    private final ArrayList<Thread> runningThreads = new ArrayList<>();
     private Thread thread;
 
     /**
@@ -27,7 +27,7 @@ public class TavaniaThread {
     public void startThread(Runnable runnable, String threadName) {
         thread = new Thread(runnable);
         thread.setName(threadName);
-        thread.run();
+        thread.start();
         runningThreads.add(thread);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, TavaniaThread.class, "Started thread '" + threadName + "' successfully.");
     }

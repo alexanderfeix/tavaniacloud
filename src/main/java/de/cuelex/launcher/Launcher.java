@@ -2,6 +2,7 @@ package de.cuelex.launcher;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.thread.RunningThread;
 import de.cuelex.logger.thread.StartingThread;
 import de.cuelex.logger.thread.StoppingThread;
 import de.cuelex.logger.thread.UpdateThread;
@@ -27,10 +28,6 @@ public class Launcher {
     public boolean isCloudRunning() {
         return cloudRunning;
     }
-    private final String version = "0.1_UNSTABLE";
-    public String getVersion() {
-        return version;
-    }
     private String startingDate;
     public String getStartingDate() {
         return startingDate;
@@ -41,16 +38,9 @@ public class Launcher {
 
     public void start(){
         getInstance().cloudRunning = true;
-        HomeCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
         HomeCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
-        HomeCloud.getInstance().getCommandExecuter().implementCommands();
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
-            boolean exists = HomeCloud.getInstance().getCommandExecuter().dispatchCommand(input);
-            if (!exists)
-                ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, Launcher.class,"Command not found! Use 'help' for more informations.");
-        }
+        HomeCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
+        HomeCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
     }
 
     public void stop(){

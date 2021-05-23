@@ -21,7 +21,7 @@ public class VersionCommand extends Command{
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
         if(args.length == 0){
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, VersionCommand.class, "Current version: " + HomeCloud.getInstance().getLauncher().getVersion());
+            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, VersionCommand.class, "Current version: " + HomeCloud.getInstance().getVersionManager().getCurrentVersion());
         }
     }
 }

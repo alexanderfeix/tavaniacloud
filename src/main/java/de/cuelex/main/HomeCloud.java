@@ -7,7 +7,9 @@ import de.cuelex.logger.command.CommandExecuter;
 import de.cuelex.logger.thread.TavaniaThread;
 import de.cuelex.util.JSONWebDataHandler;
 import de.cuelex.util.VersionManager;
+import de.cuelex.util.YamlFileHandler;
 import de.cuelex.util.api.GoogleAuthenticationHandler;
+import org.simpleyaml.configuration.file.YamlFile;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -55,6 +57,11 @@ public class HomeCloud {
         return mySQLConnectionHandler;
     }
     public DatabaseHandler databaseHandler = new DatabaseHandler();
+    public YamlFileHandler yamlFileHandler = new YamlFileHandler();
+
+    public YamlFileHandler getYamlFileHandler() {
+        return yamlFileHandler;
+    }
 
     public DatabaseHandler getDatabaseHandler() {
         return databaseHandler;
