@@ -1,9 +1,8 @@
 package de.cuelex.database.mysql;
 
-import de.cuelex.database.DatabaseHandler;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.main.HomeCloud;
+import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.sql.Statement;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.database.mysql
+    Location: TavaniaCloud/de.cuelex.database.mysql
     Date: 14.05.2021
     
 */
@@ -29,15 +28,15 @@ public class MySQLConnectionHandler {
      */
     public void connect() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://" + HomeCloud.getInstance().getDatabaseHandler().getHostname() + ":" + HomeCloud.getInstance().getDatabaseHandler().getPort() + "/" + HomeCloud.getInstance().getDatabaseHandler().getDatabase() + "?autoReconnect=true", HomeCloud.getInstance().getDatabaseHandler().getUsername(), HomeCloud.getInstance().getDatabaseHandler().getPassword());
+            connection = DriverManager.getConnection("jdbc:mysql://" + TavaniaCloud.getInstance().getDatabaseHandler().getHostname() + ":" + TavaniaCloud.getInstance().getDatabaseHandler().getPort() + "/" + TavaniaCloud.getInstance().getDatabaseHandler().getDatabase() + "?autoReconnect=true", TavaniaCloud.getInstance().getDatabaseHandler().getUsername(), TavaniaCloud.getInstance().getDatabaseHandler().getPassword());
             ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, MySQLConnectionHandler.class, "Successfully connected to database!");
             //Set mysql-configured true in config file
-            YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
+            YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
             yamlFile.set("DatabaseConfiguration", true);
             yamlFile.set("DatabaseType", "MYSQL");
             yamlFile.save();
-            HomeCloud.getInstance().getDatabaseHandler().saveConfigurations();
-            HomeCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
+            TavaniaCloud.getInstance().getDatabaseHandler().saveConfigurations();
+            TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
             ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, MySQLConnectionHandler.class, "Could not connect to MySQL-Database. Please check your configurations.");

@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
     Copyright © 2019-2021 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.util
+    Location: TavaniaCloud/de.cuelex.util
     Date: 26.01.2021
     
 */
@@ -45,7 +44,7 @@ public class JSONWebDataHandler {
     public JSONObject getObjectFromWebsite(final String url) throws IOException {
         final InputStream inputStream = new URL(url).openStream();
         try {
-            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             final String rawJson = read(bufferedReader);
             final JSONObject jsonObject = new JSONObject(rawJson);
             return jsonObject;

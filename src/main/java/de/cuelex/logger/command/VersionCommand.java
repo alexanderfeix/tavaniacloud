@@ -2,13 +2,13 @@ package de.cuelex.logger.command;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.main.HomeCloud;
+import de.cuelex.main.TavaniaCloud;
 
 /*
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger.command
+    Location: TavaniaCloud/de.cuelex.logger.command
     Date: 10.12.2020
     
 */
@@ -21,7 +21,7 @@ public class VersionCommand extends Command{
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
         if(args.length == 0){
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, VersionCommand.class, "Current version: " + HomeCloud.getInstance().getVersionManager().getCurrentVersion());
+            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, VersionCommand.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
         }
     }
 }

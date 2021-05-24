@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger.thread
+    Location: TavaniaCloud/de.cuelex.logger.thread
     Date: 19.11.2020
     
 */

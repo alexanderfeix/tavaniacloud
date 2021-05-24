@@ -10,10 +10,8 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +22,7 @@ import java.net.URLEncoder;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.util.api
+    Location: TavaniaCloud/de.cuelex.util.api
     Date: 13.05.2021
     
 */
@@ -35,7 +33,7 @@ public class GoogleAuthenticationHandler {
     private final GoogleAuthenticatorKey googleAuthenticatorKey = googleAuthenticator.createCredentials();
     private String googleAuthKey;
     private int keyPW;
-    String barCodeUrl = getGoogleAuthenticatorBarCode(googleAuthenticatorKey.getKey(), "taventix@gmail.com", "HomeCloud");
+    String barCodeUrl = getGoogleAuthenticatorBarCode(googleAuthenticatorKey.getKey(), "taventix@gmail.com", "TavaniaCloud");
     public boolean isAuthorized() {
         return isAuthorized;
     }

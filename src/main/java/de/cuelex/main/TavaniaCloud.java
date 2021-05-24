@@ -9,7 +9,6 @@ import de.cuelex.util.JSONWebDataHandler;
 import de.cuelex.util.VersionManager;
 import de.cuelex.util.YamlFileHandler;
 import de.cuelex.util.api.GoogleAuthenticationHandler;
-import org.simpleyaml.configuration.file.YamlFile;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -18,41 +17,54 @@ import java.util.GregorianCalendar;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.main
+    Location: TavaniaCloud/de.cuelex.main
     Date: 19.11.2020
     
 */
-public class HomeCloud {
+public class TavaniaCloud {
 
-    public static HomeCloud instance = new HomeCloud();
-    public static HomeCloud getInstance() {
-        return instance;
-    }
-    private Launcher launcher = new Launcher();
+    public static TavaniaCloud instance = new TavaniaCloud();
+    private final Launcher launcher = new Launcher();
+    private final TavaniaThread tavaniaThread = new TavaniaThread();
+
     public Launcher getLauncher() {
         return launcher;
     }
-    private TavaniaThread tavaniaThread = new TavaniaThread();
+
+    private final GoogleAuthenticationHandler googleAuthenticationHandler = new GoogleAuthenticationHandler();
+
     public TavaniaThread getTavaniaThread() {
         return tavaniaThread;
     }
-    private GoogleAuthenticationHandler googleAuthenticationHandler = new GoogleAuthenticationHandler();
+
+    private final CommandExecuter commandExecuter = new CommandExecuter();
+
     public GoogleAuthenticationHandler getGoogleAuthenticationHandler() {
         return googleAuthenticationHandler;
     }
-    private CommandExecuter commandExecuter = new CommandExecuter();
+
+    private final JSONWebDataHandler jsonWebDataHandler = new JSONWebDataHandler();
+
     public CommandExecuter getCommandExecuter() {
         return commandExecuter;
     }
-    private JSONWebDataHandler jsonWebDataHandler = new JSONWebDataHandler();
+
+    public static TavaniaCloud getInstance() {
+        return instance;
+    }
+
     public JSONWebDataHandler getJsonWebDataHandler() {
         return jsonWebDataHandler;
     }
+
     public VersionManager versionManager = new VersionManager();
+
     public VersionManager getVersionManager() {
         return versionManager;
     }
+
     public MySQLConnectionHandler mySQLConnectionHandler = new MySQLConnectionHandler();
+
     public MySQLConnectionHandler getMySQLConnectionHandler() {
         return mySQLConnectionHandler;
     }

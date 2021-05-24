@@ -6,7 +6,7 @@ import de.cuelex.logger.ConsoleLogger;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger.command
+    Location: TavaniaCloud/de.cuelex.logger.command
     Date: 19.11.2020
     
 */

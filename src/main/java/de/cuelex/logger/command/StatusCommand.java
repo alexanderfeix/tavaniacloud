@@ -3,13 +3,13 @@ package de.cuelex.logger.command;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.main.HomeCloud;
+import de.cuelex.main.TavaniaCloud;
 
 /*
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger.command
+    Location: TavaniaCloud/de.cuelex.logger.command
     Date: 19.11.2020
     
 */
@@ -20,9 +20,9 @@ public class StatusCommand extends Command{
 
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Current status of HomeCloud:");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "VERSION: " + HomeCloud.getInstance().getVersionManager().getCurrentVersion());
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Current status of TavaniaCloud:");
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "VERSION: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "STATUS: " + Launcher.getInstance().isCloudRunning());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Starting-Date: " + HomeCloud.getInstance().getLauncher().getStartingDate());
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Starting-Date: " + TavaniaCloud.getInstance().getLauncher().getStartingDate());
     }
 }

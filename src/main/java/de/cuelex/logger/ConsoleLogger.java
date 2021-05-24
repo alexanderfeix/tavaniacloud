@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger
+    Location: TavaniaCloud/de.cuelex.logger
     Date: 19.11.2020
     
 */

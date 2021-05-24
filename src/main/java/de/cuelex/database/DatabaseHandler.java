@@ -3,7 +3,7 @@ package de.cuelex.database;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
 import de.cuelex.logger.thread.RunningThread;
-import de.cuelex.main.HomeCloud;
+import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
 
@@ -16,7 +16,7 @@ import java.util.Scanner;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.database
+    Location: TavaniaCloud/de.cuelex.database
     Date: 20.05.2021
     
 */
@@ -72,11 +72,11 @@ public class DatabaseHandler {
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your hostname?");
         Scanner scannerHostname = new Scanner(System.in);
         String hostname = scannerHostname.nextLine();
-        HomeCloud.getInstance().getDatabaseHandler().setHostname(hostname);
+        TavaniaCloud.getInstance().getDatabaseHandler().setHostname(hostname);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is the name of your database?");
         Scanner scannerDatabase = new Scanner(System.in);
         String database = scannerDatabase.nextLine();
-        HomeCloud.getInstance().getDatabaseHandler().setDatabase(database);
+        TavaniaCloud.getInstance().getDatabaseHandler().setDatabase(database);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your port?");
         Scanner scannerPort = new Scanner(System.in);
         int port;
@@ -87,15 +87,15 @@ public class DatabaseHandler {
             }
              port = scannerPort.nextInt();
         }while (port <= 0);
-        HomeCloud.getInstance().getDatabaseHandler().setPort(port);
+        TavaniaCloud.getInstance().getDatabaseHandler().setPort(port);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your username?");
         Scanner scannerUsername = new Scanner(System.in);
         String username = scannerUsername.nextLine();
-        HomeCloud.getInstance().getDatabaseHandler().setUsername(username);
+        TavaniaCloud.getInstance().getDatabaseHandler().setUsername(username);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your password?");
         Scanner scannerPassword = new Scanner(System.in);
         String password = scannerPassword.nextLine();
-        HomeCloud.getInstance().getDatabaseHandler().setPassword(password);
+        TavaniaCloud.getInstance().getDatabaseHandler().setPassword(password);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "Done! Connecting to database...");
         try{
             saveConfigurations();
@@ -109,7 +109,7 @@ public class DatabaseHandler {
      * creating database entry in config.yml
      */
     private void initializeData(){
-        YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
+        YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
         try {
             yamlFile.load();
             this.hostname = yamlFile.getString(getDatabaseType() + ".Hostname");
@@ -122,23 +122,23 @@ public class DatabaseHandler {
         }
     }
 
-    public void connectToDatabase(){
+    public void connectToDatabase() {
         initializeData();
-        if(getDatabaseType().equalsIgnoreCase("MYSQL")){
-            HomeCloud.getInstance().getMySQLConnectionHandler().connect();
-        }else if(getDatabaseType().equalsIgnoreCase("REDIS")){
+        if (getDatabaseType().equalsIgnoreCase("MYSQL")) {
+            TavaniaCloud.getInstance().getMySQLConnectionHandler().connect();
+        } else if (getDatabaseType().equalsIgnoreCase("REDIS")) {
             ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Redis-Support is in development!");
         }
-       if(!HomeCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")){
-           HomeCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
-       }
+        if (!TavaniaCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")) {
+            TavaniaCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
+        }
     }
 
     /**
      * save database configurations in config.yml
      */
     public void saveConfigurations(){
-        YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
+        YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
         yamlFile.set(getDatabaseType() + ".Hostname", hostname);
         yamlFile.set(getDatabaseType() + ".Database", database);
         yamlFile.set(getDatabaseType() + ".Port", port);

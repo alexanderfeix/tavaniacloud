@@ -2,19 +2,16 @@ package de.cuelex.launcher;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.logger.thread.RunningThread;
 import de.cuelex.logger.thread.StartingThread;
 import de.cuelex.logger.thread.StoppingThread;
 import de.cuelex.logger.thread.UpdateThread;
-import de.cuelex.main.HomeCloud;
-
-import java.util.Scanner;
+import de.cuelex.main.TavaniaCloud;
 
 /*
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.launcher
+    Location: TavaniaCloud/de.cuelex.launcher
     Date: 19.11.2020
     
 */
@@ -36,24 +33,24 @@ public class Launcher {
         this.startingDate = startingDate;
     }
 
-    public void start(){
+    public void start() {
         getInstance().cloudRunning = true;
-        HomeCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
-        HomeCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
+        TavaniaCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
+        TavaniaCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
     }
 
     public void stop(){
         getInstance().cloudRunning = false;
-        HomeCloud.getInstance().getTavaniaThread().startThread(new StoppingThread(), "StoppingThread");
+        TavaniaCloud.getInstance().getTavaniaThread().startThread(new StoppingThread(), "StoppingThread");
     }
 
     public void restart(){
         if(getInstance().cloudRunning){
             stop();
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class,"HomeCloud successfully stopped!");
+            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class, "TavaniaCloud successfully stopped!");
             start();
         }else{
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, Launcher.class,"HomeCloud couldn't restart, because the system is not running!");
+            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, Launcher.class, "TavaniaCloud couldn't restart, because the system is not running!");
         }
     }
 

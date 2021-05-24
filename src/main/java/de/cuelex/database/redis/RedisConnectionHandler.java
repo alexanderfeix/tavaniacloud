@@ -2,7 +2,6 @@ package de.cuelex.database.redis;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.main.HomeCloud;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -13,7 +12,7 @@ import redis.clients.jedis.exceptions.JedisConnectionException;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.database.redis
+    Location: TavaniaCloud/de.cuelex.database.redis
     Date: 14.05.2021
     
 */
@@ -29,9 +28,7 @@ public class RedisConnectionHandler {
     public void connect() {
         this.hostname = null;
         this.port = 0;
-        ;
         this.password = null;
-        ;
         redisPool = new JedisPool(new JedisPoolConfig(), hostname, port, Protocol.DEFAULT_TIMEOUT, password);
         ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, RedisConnectionHandler.class, "Successfully connected to database using jedis.");
     }

@@ -3,9 +3,8 @@ package de.cuelex.logger.thread;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
-import de.cuelex.main.HomeCloud;
+import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
-import org.simpleyaml.exceptions.InvalidConfigurationException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,24 +13,24 @@ import java.util.Scanner;
 
     Copyright © 2019 Alexander F.
     Twitter: @Taventiksch
-    Location: HomeCloud/de.cuelex.logger.thread
+    Location: TavaniaCloud/de.cuelex.logger.thread
     Date: 19.11.2020
     
 */
 public class StartingThread implements Runnable{
     public void run() {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class,"Starting HomeCloud by Cuelex...");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class,"Current version: " + HomeCloud.getInstance().getVersionManager().getCurrentVersion());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class,"Copyright 2020-2021 Alexander Feix");
-        HomeCloud.getInstance().getLauncher().setStartingDate(HomeCloud.getInstance().getGregorianDate().toString());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class,"Started HomeCloud successfully!");
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Starting TavaniaCloud by Cuelex...");
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Copyright 2020-2021 Alexander Feix");
+        TavaniaCloud.getInstance().getLauncher().setStartingDate(TavaniaCloud.getInstance().getGregorianDate().toString());
+        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class, "Started TavaniaCloud successfully!");
         createConfigFiles();
         //authorize();
-        if(!HomeCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()){
-            HomeCloud.getInstance().getDatabaseHandler().configureDatabase();
-        }else{
-            HomeCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
-            HomeCloud.getInstance().getDatabaseHandler().connectToDatabase();
+        if (!TavaniaCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {
+            TavaniaCloud.getInstance().getDatabaseHandler().configureDatabase();
+        } else {
+            TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
+            TavaniaCloud.getInstance().getDatabaseHandler().connectToDatabase();
         }
     }
 
@@ -39,15 +38,15 @@ public class StartingThread implements Runnable{
      * authentication via GoogleAuthenticator
      */
     private void authorize(){
-        HomeCloud.getInstance().getGoogleAuthenticationHandler().a();
+        TavaniaCloud.getInstance().getGoogleAuthenticationHandler().a();
         Scanner authScanner = new Scanner(System.in);
         String authNextLine = authScanner.nextLine();
-        HomeCloud.getInstance().getGoogleAuthenticationHandler().b(Integer.parseInt(authNextLine));
+        TavaniaCloud.getInstance().getGoogleAuthenticationHandler().b(Integer.parseInt(authNextLine));
     }
 
     private void createConfigFiles(){
-        YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
-        if(!yamlFile.exists()){
+        YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
+        if (!yamlFile.exists()) {
             try {
                 yamlFile.set("DatabaseConfiguration", false);
                 yamlFile.set("DatabaseType", "/");
@@ -56,8 +55,8 @@ public class StartingThread implements Runnable{
                 e.printStackTrace();
             }
         }
-        HomeCloud.getInstance().getYamlFileHandler().loadConfigFile();
-        HomeCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(HomeCloud.getInstance().getYamlFileHandler().getConfigFile().getBoolean("DatabaseConfiguration"));
-        HomeCloud.getInstance().getDatabaseHandler().setDatabaseType(HomeCloud.getInstance().getYamlFileHandler().getConfigFile().getString("DatabaseType"));
+        TavaniaCloud.getInstance().getYamlFileHandler().loadConfigFile();
+        TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile().getBoolean("DatabaseConfiguration"));
+        TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseType(TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile().getString("DatabaseType"));
     }
 }
