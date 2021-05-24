@@ -2,6 +2,7 @@ package de.cuelex.database;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.thread.RunningThread;
 import de.cuelex.main.HomeCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
@@ -103,9 +104,12 @@ public class DatabaseHandler {
             ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Could not connect to the database.");
         }
     }
+
+    /**
+     * creating database entry in config.yml
+     */
     private void initializeData(){
         YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
-        System.out.println(getDatabaseType());
         try {
             yamlFile.load();
             this.hostname = yamlFile.getString(getDatabaseType() + ".Hostname");
@@ -117,6 +121,7 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
+
     public void connectToDatabase(){
         initializeData();
         if(getDatabaseType().equalsIgnoreCase("MYSQL")){
@@ -124,8 +129,14 @@ public class DatabaseHandler {
         }else if(getDatabaseType().equalsIgnoreCase("REDIS")){
             ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Redis-Support is in development!");
         }
+       if(!HomeCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")){
+           HomeCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
+       }
     }
 
+    /**
+     * save database configurations in config.yml
+     */
     public void saveConfigurations(){
         YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
         yamlFile.set(getDatabaseType() + ".Hostname", hostname);

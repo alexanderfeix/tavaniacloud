@@ -19,7 +19,7 @@ public class RunningThread implements Runnable{
     @Override
     public void run() {
         HomeCloud.getInstance().getCommandExecuter().implementCommands();
-        while (true) {
+        while (HomeCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             boolean exists = HomeCloud.getInstance().getCommandExecuter().dispatchCommand(input);

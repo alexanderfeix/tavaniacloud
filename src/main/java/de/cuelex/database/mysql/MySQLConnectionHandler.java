@@ -31,7 +31,7 @@ public class MySQLConnectionHandler {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://" + HomeCloud.getInstance().getDatabaseHandler().getHostname() + ":" + HomeCloud.getInstance().getDatabaseHandler().getPort() + "/" + HomeCloud.getInstance().getDatabaseHandler().getDatabase() + "?autoReconnect=true", HomeCloud.getInstance().getDatabaseHandler().getUsername(), HomeCloud.getInstance().getDatabaseHandler().getPassword());
             ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, MySQLConnectionHandler.class, "Successfully connected to database!");
-            //Set mysql-configured to true in config file
+            //Set mysql-configured true in config file
             YamlFile yamlFile = HomeCloud.getInstance().getYamlFileHandler().getConfigFile();
             yamlFile.set("DatabaseConfiguration", true);
             yamlFile.set("DatabaseType", "MYSQL");

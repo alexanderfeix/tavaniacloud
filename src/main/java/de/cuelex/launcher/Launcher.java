@@ -40,7 +40,6 @@ public class Launcher {
         getInstance().cloudRunning = true;
         HomeCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
         HomeCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
-        HomeCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
     }
 
     public void stop(){

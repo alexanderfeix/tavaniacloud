@@ -31,11 +31,13 @@ public class StartingThread implements Runnable{
             HomeCloud.getInstance().getDatabaseHandler().configureDatabase();
         }else{
             HomeCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
-            System.out.println(HomeCloud.getInstance().getDatabaseHandler().isDatabaseConfigured());
             HomeCloud.getInstance().getDatabaseHandler().connectToDatabase();
         }
     }
 
+    /**
+     * authentication via GoogleAuthenticator
+     */
     private void authorize(){
         HomeCloud.getInstance().getGoogleAuthenticationHandler().a();
         Scanner authScanner = new Scanner(System.in);
