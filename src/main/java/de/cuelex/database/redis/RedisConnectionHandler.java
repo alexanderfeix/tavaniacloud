@@ -35,7 +35,7 @@ public class RedisConnectionHandler {
         redisPool = new JedisPool(new JedisPoolConfig(), hostname, port, Protocol.DEFAULT_TIMEOUT);
         redis = redisPool.getResource();
         try {
-            //Set redis-configured true in config file
+            //Set redis-configured to true in config file
             YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
             yamlFile.set("DatabaseConfiguration", true);
             yamlFile.set("DatabaseType", "REDIS");
