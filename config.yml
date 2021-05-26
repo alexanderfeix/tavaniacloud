@@ -1,8 +1,0 @@
-DatabaseConfiguration: true
-DatabaseType: MYSQL
-MYSQL:
-  Hostname: localhost
-  Database: TavaniaCloud
-  Port: 3306
-  Username: root
-  Password: ''
