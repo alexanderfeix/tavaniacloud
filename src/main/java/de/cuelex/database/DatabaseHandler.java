@@ -127,7 +127,8 @@ public class DatabaseHandler {
         if (getDatabaseType().equalsIgnoreCase("MYSQL")) {
             TavaniaCloud.getInstance().getMySQLConnectionHandler().connect();
         } else if (getDatabaseType().equalsIgnoreCase("REDIS")) {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Redis-Support is in development!");
+            TavaniaCloud.getInstance().getRedisConnectionHandler().connect();
+            TavaniaCloud.getInstance().getRedisConnectionHandler().openConnection();
         }
         if (!TavaniaCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")) {
             TavaniaCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");

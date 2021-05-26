@@ -2,6 +2,7 @@ package de.cuelex.main;
 
 import de.cuelex.database.DatabaseHandler;
 import de.cuelex.database.mysql.MySQLConnectionHandler;
+import de.cuelex.database.redis.RedisConnectionHandler;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.command.CommandExecuter;
 import de.cuelex.logger.thread.TavaniaThread;
@@ -68,6 +69,7 @@ public class TavaniaCloud {
     public MySQLConnectionHandler getMySQLConnectionHandler() {
         return mySQLConnectionHandler;
     }
+
     public DatabaseHandler databaseHandler = new DatabaseHandler();
     public YamlFileHandler yamlFileHandler = new YamlFileHandler();
 
@@ -77,6 +79,12 @@ public class TavaniaCloud {
 
     public DatabaseHandler getDatabaseHandler() {
         return databaseHandler;
+    }
+
+    public RedisConnectionHandler redisConnectionHandler = new RedisConnectionHandler();
+
+    public RedisConnectionHandler getRedisConnectionHandler() {
+        return redisConnectionHandler;
     }
 
     public static void main(String[] args) {
