@@ -10,8 +10,6 @@ package de.cuelex.database.mysql;
 */
 public class MySQLHandler {
 
-    public void connect(){
 
-    }
 
 }

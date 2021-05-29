@@ -6,6 +6,7 @@ import de.cuelex.database.redis.RedisConnectionHandler;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.command.CommandExecuter;
 import de.cuelex.logger.thread.TavaniaThread;
+import de.cuelex.user.client.TavaniaClientHandler;
 import de.cuelex.util.JSONWebDataHandler;
 import de.cuelex.util.VersionManager;
 import de.cuelex.util.YamlFileHandler;
@@ -85,6 +86,12 @@ public class TavaniaCloud {
 
     public RedisConnectionHandler getRedisConnectionHandler() {
         return redisConnectionHandler;
+    }
+
+    public TavaniaClientHandler tavaniaClientHandler = new TavaniaClientHandler();
+
+    public TavaniaClientHandler getTavaniaClientHandler() {
+        return tavaniaClientHandler;
     }
 
     public static void main(String[] args) {
