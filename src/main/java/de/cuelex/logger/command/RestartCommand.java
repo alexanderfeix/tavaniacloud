@@ -1,7 +1,7 @@
 package de.cuelex.logger.command;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 import java.util.HashMap;
@@ -23,18 +23,18 @@ public class RestartCommand extends Command{
 
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.WARNING, StopCommand.class, "Are you sure to restart TavaniaCloud?");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.WARNING, StopCommand.class, "YES / NO");
+        ConsoleLogger.getInstance().log(LoggerType.WARNING, StopCommand.class, "Are you sure to restart TavaniaCloud?");
+        ConsoleLogger.getInstance().log(LoggerType.WARNING, StopCommand.class, "YES / NO");
         Scanner scanner = new Scanner(System.in);
         confirmedRestarting.put("admin", false);
         String input = scanner.nextLine();
-        if(input.equalsIgnoreCase("yes")) {
+        if (input.equalsIgnoreCase("yes")) {
             confirmedRestarting.put("admin", true);
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, StopCommand.class, "Restarting TavaniaCloud.");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, StopCommand.class, "Restarting TavaniaCloud.");
             TavaniaCloud.getInstance().getLauncher().restart();
-        }else{
+        } else {
             confirmedRestarting.remove("admin");
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, StopCommand.class, "Restarting canceled.");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, StopCommand.class, "Restarting canceled.");
         }
     }
 }

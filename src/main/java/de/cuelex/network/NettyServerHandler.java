@@ -1,7 +1,7 @@
 package de.cuelex.network;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -34,7 +34,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelRead0(ChannelHandlerContext channelHandlerContext, String message) throws Exception {
         System.out.println("Packet received: " + message);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, NettyServerHandler.class, "Received packet: " + message);
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, "Received packet: " + message);
         Channel incoming = channelHandlerContext.channel();
         for (Channel channel : channels) {
             if (channel != incoming) {
@@ -49,7 +49,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has connected!\n");
         }
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
         channels.add(ctx.channel());
         //new FileServerThread().run();
     }
@@ -60,7 +60,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has disconnected!\n");
         }
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
         channels.remove(ctx.channel());
         ctx.close();
     }

@@ -1,7 +1,7 @@
 package de.cuelex.logger.thread;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class TavaniaThread {
         thread.setName(threadName);
         thread.start();
         runningThreads.add(thread);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, TavaniaThread.class, "Started thread '" + threadName + "' successfully.");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaThread.class, "Started thread '" + threadName + "' successfully.");
     }
 
     /**
@@ -40,7 +40,7 @@ public class TavaniaThread {
     public void stopThread(String threadName) {
         getRunningThreads().remove(getThread(threadName));
         getThread(threadName).stop();
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, TavaniaThread.class, "Stopped thread '" + threadName + "' successfully.");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaThread.class, "Stopped thread '" + threadName + "' successfully.");
     }
 
     /**

@@ -8,7 +8,7 @@ import com.google.zxing.common.BitMatrix;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,12 +43,12 @@ public class GoogleAuthenticationHandler {
 
     public void a() {
         File file = new File("qr.png");
-        if(file.exists()){
+        if (file.exists()) {
             file.delete();
         }
         String key = googleAuthenticatorKey.getKey();
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Your 2FA-Code is: " + key);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Please type in your Auth-Code.");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Your 2FA-Code is: " + key);
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Please type in your Auth-Code.");
         setGoogleAuthKey(key);
         try {
             createQRCode(barCodeUrl, "qr.png", 300, 300);
@@ -73,10 +73,10 @@ public class GoogleAuthenticationHandler {
     public void b(int code) {
         isAuthorized = googleAuthenticator.authorize(googleAuthenticatorKey.getKey(), code);
         if (isAuthorized) {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, GoogleAuthenticationHandler.class,"Successfully authorized!");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, GoogleAuthenticationHandler.class, "Successfully authorized!");
             setAuthorized(true);
         } else {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, GoogleAuthenticationHandler.class,"Error during authentication process! Please restart the application.");
+            ConsoleLogger.getInstance().log(LoggerType.ERROR, GoogleAuthenticationHandler.class, "Error during authentication process! Please restart the application.");
             System.exit(0);
         }
     }

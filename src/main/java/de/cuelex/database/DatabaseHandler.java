@@ -1,7 +1,7 @@
 package de.cuelex.database;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.logger.thread.RunningThread;
 import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
@@ -48,60 +48,60 @@ public class DatabaseHandler {
         return databaseType;
     }
 
-    public void configureDatabase(){
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "First things first! The connection to your database must be configured.");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "MAKE SURE YOU TYPE IN EVERYTHING CORRECTLY, OTHERWISE YOU HAVE TO REINSTALL THE APPLICATION! ");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "Make sure you have the information about your: ");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Database-Type (MySQL/Redis)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Hostname (String)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Name of database (String)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Port (Integer)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Username (String)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "- Password (String)");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "Your password will not get saved on the webserver! It will get saved encrypted in the database.");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your database-type?");
+    public void configureDatabase() {
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "First things first! The connection to your database must be configured.");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "MAKE SURE YOU TYPE IN EVERYTHING CORRECTLY, OTHERWISE YOU HAVE TO REINSTALL THE APPLICATION! ");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "Make sure you have the information about your: ");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Database-Type (MySQL/Redis)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Hostname (String)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Name of database (String)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Port (Integer)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Username (String)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "- Password (String)");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "Your password will not get saved on the webserver! It will get saved encrypted in the database.");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is your database-type?");
         Scanner scanner = new Scanner(System.in);
         String databaseType = scanner.nextLine();
-        if(getDatabaseTypes().toString().contains(databaseType.toUpperCase())){
+        if (getDatabaseTypes().toString().contains(databaseType.toUpperCase())) {
             setDatabaseType(databaseType.toUpperCase());
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "You've set your database-type to: " + getDatabaseType());
-        }else{
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "This database-type is unfortunately not supported!");
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "You've set your database-type to: " + getDatabaseType());
+        } else {
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "This database-type is unfortunately not supported!");
             return;
         }
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your hostname?");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is your hostname?");
         Scanner scannerHostname = new Scanner(System.in);
         String hostname = scannerHostname.nextLine();
         TavaniaCloud.getInstance().getDatabaseHandler().setHostname(hostname);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is the name of your database?");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is the name of your database?");
         Scanner scannerDatabase = new Scanner(System.in);
         String database = scannerDatabase.nextLine();
         TavaniaCloud.getInstance().getDatabaseHandler().setDatabase(database);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your port?");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is your port?");
         Scanner scannerPort = new Scanner(System.in);
         int port;
         do {
             while (!scannerPort.hasNextInt()) {
-                ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Please enter a valid port!");
+                ConsoleLogger.getInstance().log(LoggerType.ERROR, DatabaseHandler.class, "Please enter a valid port!");
                 scannerPort.next();
             }
              port = scannerPort.nextInt();
         }while (port <= 0);
         TavaniaCloud.getInstance().getDatabaseHandler().setPort(port);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your username?");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is your username?");
         Scanner scannerUsername = new Scanner(System.in);
         String username = scannerUsername.nextLine();
         TavaniaCloud.getInstance().getDatabaseHandler().setUsername(username);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "What is your password?");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "What is your password?");
         Scanner scannerPassword = new Scanner(System.in);
         String password = scannerPassword.nextLine();
         TavaniaCloud.getInstance().getDatabaseHandler().setPassword(password);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, DatabaseHandler.class, "Done! Connecting to database...");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, DatabaseHandler.class, "Done! Connecting to database...");
         try{
             saveConfigurations();
             connectToDatabase();
         }catch (Exception e){
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, DatabaseHandler.class, "Could not connect to the database.");
+            ConsoleLogger.getInstance().log(LoggerType.ERROR, DatabaseHandler.class, "Could not connect to the database.");
         }
     }
 

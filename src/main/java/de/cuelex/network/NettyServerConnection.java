@@ -1,7 +1,7 @@
 package de.cuelex.network;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -39,7 +39,7 @@ public class NettyServerConnection {
             bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel channel) throws Exception {
-                    ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, NettyServerConnection.class, "Client connected with IP: " + channel.remoteAddress().getHostName());
+                    ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerConnection.class, "Client connected with IP: " + channel.remoteAddress().getHostName());
                     channel.pipeline().addLast(new StringEncoder(StandardCharsets.UTF_8),
                             new StringDecoder(StandardCharsets.UTF_8),
                             new NettyServerHandler());
@@ -48,7 +48,7 @@ public class NettyServerConnection {
             bootstrap.option(ChannelOption.SO_BACKLOG, 50);
             bootstrap.childOption(ChannelOption.SO_KEEPALIVE, isKeepAlive());
             channelFuture = bootstrap.bind(getPort()).sync();
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, NettyServerConnection.class, "Netty-Server is listening...");
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerConnection.class, "Netty-Server is listening...");
             channelFuture.channel().closeFuture().sync();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 package de.cuelex.user.client;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 
 /*
 
@@ -17,7 +17,7 @@ public class TavaniaClientHandler {
         TavaniaClient tavaniaClient = new TavaniaClient(id, ipAddress, username, location, connectionDate);
         TavaniaClient.clients.add(tavaniaClient);
         TavaniaClient.clientId.put(id, tavaniaClient);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, TavaniaClientHandler.class, username + "successfully registered.");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaClientHandler.class, username + "successfully registered.");
     }
 
     public void removeClient(int id) {
@@ -25,23 +25,23 @@ public class TavaniaClientHandler {
         try {
             tavaniaClient = TavaniaClient.clientId.get(id);
         } catch (Exception exception) {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, TavaniaClientHandler.class, "User with ID: " + id + " is not registered.");
+            ConsoleLogger.getInstance().log(LoggerType.ERROR, TavaniaClientHandler.class, "User with ID: " + id + " is not registered.");
             return;
         }
         TavaniaClient.clients.remove(tavaniaClient);
         TavaniaClient.clientId.remove(id);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, TavaniaClientHandler.class, "User with ID: " + id + " successfully removed.");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaClientHandler.class, "User with ID: " + id + " successfully removed.");
     }
 
     public void listClients() {
         if (TavaniaClient.clients == null) {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, TavaniaClientHandler.class, "No clients are currently connected.");
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, "No clients are currently connected.");
             return;
         }
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, TavaniaClientHandler.class, "Connected clients:");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, "Connected clients:");
         for (int i = 0; i < TavaniaClient.clients.size(); i++) {
             TavaniaClient tavaniaClient = TavaniaClient.clients.get(i);
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, TavaniaClientHandler.class, tavaniaClient.getId() + " | " + tavaniaClient.getIpAddress() + " | " + tavaniaClient.getUsername() + " | " + tavaniaClient.getLocation() + " | " + tavaniaClient.getConnectionDate());
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, tavaniaClient.getId() + " | " + tavaniaClient.getIpAddress() + " | " + tavaniaClient.getUsername() + " | " + tavaniaClient.getLocation() + " | " + tavaniaClient.getConnectionDate());
         }
     }
 }

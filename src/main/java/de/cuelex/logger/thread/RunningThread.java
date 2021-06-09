@@ -2,7 +2,7 @@ package de.cuelex.logger.thread;
 
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class RunningThread implements Runnable{
             String input = scanner.nextLine();
             boolean exists = TavaniaCloud.getInstance().getCommandExecuter().dispatchCommand(input);
             if (!exists)
-                ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, Launcher.class, "Command not found! Use 'help' for more informations.");
+                ConsoleLogger.getInstance().log(LoggerType.ERROR, Launcher.class, "Command not found! Use 'help' for more informations.");
         }
     }
 }

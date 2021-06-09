@@ -10,6 +10,19 @@ package de.cuelex.database.mysql;
 */
 public class MySQLHandler {
 
+    public MySQLLogManager mySQLLogManager = new MySQLLogManager();
+    public MySQLCloudManager mySQLCloudManager = new MySQLCloudManager();
 
+    public MySQLLogManager getMySQLLogManager() {
+        return mySQLLogManager;
+    }
 
+    public MySQLCloudManager getMySQLCloudManager() {
+        return mySQLCloudManager;
+    }
+
+    public void createDatabases() {
+        this.mySQLLogManager.createSQLTable();
+        //this.mySQLCloudManager.createSQLTable();
+    }
 }

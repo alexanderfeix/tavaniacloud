@@ -1,7 +1,7 @@
 package de.cuelex.database.redis;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 import redis.clients.jedis.Jedis;
@@ -45,7 +45,7 @@ public class RedisConnectionHandler {
         }
         TavaniaCloud.getInstance().getDatabaseHandler().saveConfigurations();
         TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, RedisConnectionHandler.class, "Successfully connected to database using jedis.");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, RedisConnectionHandler.class, "Successfully connected to database using jedis.");
     }
 
     public void disconnect() {

@@ -1,7 +1,7 @@
 package de.cuelex.logger.command;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 import java.util.HashMap;
@@ -24,18 +24,18 @@ public class StopCommand extends Command{
 
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.WARNING, StopCommand.class, "Are you sure to stop TavaniaCloud?");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.WARNING, StopCommand.class, "YES / NO");
+        ConsoleLogger.getInstance().log(LoggerType.WARNING, StopCommand.class, "Are you sure to stop TavaniaCloud?");
+        ConsoleLogger.getInstance().log(LoggerType.WARNING, StopCommand.class, "YES / NO");
         Scanner scanner = new Scanner(System.in);
         confirmedStopping.put("admin", false);
         String input = scanner.nextLine();
-        if(input.equalsIgnoreCase("yes")){
+        if (input.equalsIgnoreCase("yes")) {
             confirmedStopping.put("admin", true);
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, StopCommand.class, "Confirmed stopping.");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, StopCommand.class, "Confirmed stopping.");
             TavaniaCloud.getInstance().getLauncher().stop();
-        }else{
+        } else {
             confirmedStopping.remove("admin");
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, StopCommand.class, "Stopping canceled.");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, StopCommand.class, "Stopping canceled.");
         }
 
     }

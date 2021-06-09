@@ -2,6 +2,7 @@ package de.cuelex.main;
 
 import de.cuelex.database.DatabaseHandler;
 import de.cuelex.database.mysql.MySQLConnectionHandler;
+import de.cuelex.database.mysql.MySQLHandler;
 import de.cuelex.database.redis.RedisConnectionHandler;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.command.CommandExecuter;
@@ -92,6 +93,12 @@ public class TavaniaCloud {
 
     public TavaniaClientHandler getTavaniaClientHandler() {
         return tavaniaClientHandler;
+    }
+
+    public MySQLHandler mySQLHandler = new MySQLHandler();
+
+    public MySQLHandler getMySQLHandler() {
+        return mySQLHandler;
     }
 
     public static void main(String[] args) {

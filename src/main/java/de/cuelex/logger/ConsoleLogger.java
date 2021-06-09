@@ -18,11 +18,11 @@ public class ConsoleLogger {
         return instance;
     }
 
-    public void log(ConsoleLoggerType consoleLoggerType, Class currentclass, String logmessage){
+    public void log(LoggerType loggerType, Class currentclass, String logmessage) {
         Date date = new Date();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setGregorianChange(date);
-        System.out.println("» | [" + gregorianCalendar.getTime() + "] | " + consoleLoggerType + " | " + currentclass + " | » " + logmessage);
+        System.out.println("» | [" + gregorianCalendar.getTime() + "] | " + loggerType + " | " + currentclass + " | » " + logmessage);
     }
 
     public void log(Class currentclass, String logmessage){

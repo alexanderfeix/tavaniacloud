@@ -8,7 +8,7 @@ package de.cuelex.logger;
     Date: 19.11.2020
     
 */
-public enum ConsoleLoggerType {
+public enum LoggerType {
 
     WARNING,
     SUCCESS,

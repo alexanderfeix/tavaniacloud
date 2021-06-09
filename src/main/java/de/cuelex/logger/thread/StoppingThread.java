@@ -2,7 +2,7 @@ package de.cuelex.logger.thread;
 
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 
 /*
 
@@ -15,7 +15,7 @@ import de.cuelex.logger.ConsoleLoggerType;
 public class StoppingThread implements Runnable{
     @Override
     public void run() {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Stopping TavaniaCloud...");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class, "Stopped TavaniaCloud successfully!");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Stopping TavaniaCloud...");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "Stopped TavaniaCloud successfully!");
     }
 }

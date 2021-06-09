@@ -1,7 +1,7 @@
 package de.cuelex.database.mysql;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 
@@ -29,7 +29,7 @@ public class MySQLConnectionHandler {
     public void connect() {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://" + TavaniaCloud.getInstance().getDatabaseHandler().getHostname() + ":" + TavaniaCloud.getInstance().getDatabaseHandler().getPort() + "/" + TavaniaCloud.getInstance().getDatabaseHandler().getDatabase() + "?autoReconnect=true", TavaniaCloud.getInstance().getDatabaseHandler().getUsername(), TavaniaCloud.getInstance().getDatabaseHandler().getPassword());
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, MySQLConnectionHandler.class, "Successfully connected to database!");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, MySQLConnectionHandler.class, "Successfully connected to database!");
             //Set mysql-configured true in config file
             YamlFile yamlFile = TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile();
             yamlFile.set("DatabaseConfiguration", true);
@@ -39,7 +39,7 @@ public class MySQLConnectionHandler {
             TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, MySQLConnectionHandler.class, "Could not connect to MySQL-Database. Please check your configurations.");
+            ConsoleLogger.getInstance().log(LoggerType.ERROR, MySQLConnectionHandler.class, "Could not connect to MySQL-Database. Please check your configurations.");
         }
     }
 

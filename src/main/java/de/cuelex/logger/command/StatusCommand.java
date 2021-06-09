@@ -2,7 +2,7 @@ package de.cuelex.logger.command;
 
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 /*
@@ -20,9 +20,9 @@ public class StatusCommand extends Command{
 
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Current status of TavaniaCloud:");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "VERSION: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "STATUS: " + Launcher.getInstance().isCloudRunning());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, StatusCommand.class, "Starting-Date: " + TavaniaCloud.getInstance().getLauncher().getStartingDate());
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, StatusCommand.class, "Current status of TavaniaCloud:");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, StatusCommand.class, "VERSION: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, StatusCommand.class, "STATUS: " + Launcher.getInstance().isCloudRunning());
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, StatusCommand.class, "Starting-Date: " + TavaniaCloud.getInstance().getLauncher().getStartingDate());
     }
 }

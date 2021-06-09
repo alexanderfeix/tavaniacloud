@@ -2,7 +2,7 @@ package de.cuelex.logger.thread;
 
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 import org.simpleyaml.configuration.file.YamlFile;
 
@@ -19,11 +19,11 @@ import java.util.Scanner;
 */
 public class StartingThread implements Runnable{
     public void run() {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Starting TavaniaCloud by Cuelex...");
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, Launcher.class, "Copyright 2020-2021 Alexander Feix");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Starting TavaniaCloud by Cuelex...");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Copyright 2020-2021 Alexander Feix");
         TavaniaCloud.getInstance().getLauncher().setStartingDate(TavaniaCloud.getInstance().getGregorianDate().toString());
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class, "Started TavaniaCloud successfully!");
+        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "Started TavaniaCloud successfully!");
         createConfigFiles();
         //authorize();
         if (!TavaniaCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {

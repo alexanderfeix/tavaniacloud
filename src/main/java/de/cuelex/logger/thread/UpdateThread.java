@@ -1,7 +1,7 @@
 package de.cuelex.logger.thread;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 /*
@@ -15,7 +15,7 @@ import de.cuelex.main.TavaniaCloud;
 public class UpdateThread implements Runnable{
     @Override
     public void run() {
-        ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, UpdateThread.class, "Checking version...");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, UpdateThread.class, "Checking version...");
         /*
             Getting data from website to check the newest available version
          */
@@ -25,9 +25,9 @@ public class UpdateThread implements Runnable{
             Checking if current version is equal to the latest
          */
         if (TavaniaCloud.getInstance().getVersionManager().getCurrentVersion().equalsIgnoreCase(latestVersion)) {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, UpdateThread.class, "Latest version " + latestVersion + " installed!");
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, UpdateThread.class, "Latest version " + latestVersion + " installed!");
         } else {
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.WARNING, UpdateThread.class, "New update available! Check out: https://cuelex.de/homecloud");
+            ConsoleLogger.getInstance().log(LoggerType.WARNING, UpdateThread.class, "New update available! Check out: https://cuelex.de/homecloud");
         }
     }
 }

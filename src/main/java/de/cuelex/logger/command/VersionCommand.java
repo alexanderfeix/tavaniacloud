@@ -1,7 +1,7 @@
 package de.cuelex.logger.command;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 /*
@@ -21,7 +21,7 @@ public class VersionCommand extends Command{
     @Override
     public void execute(ConsoleLogger logger, String name, String... args) {
         if(args.length == 0){
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.INFORMATION, VersionCommand.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, VersionCommand.class, "Current version: " + TavaniaCloud.getInstance().getVersionManager().getCurrentVersion());
         }
     }
 }

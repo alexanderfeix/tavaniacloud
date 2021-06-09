@@ -1,7 +1,7 @@
 package de.cuelex.launcher;
 
 import de.cuelex.logger.ConsoleLogger;
-import de.cuelex.logger.ConsoleLoggerType;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.logger.thread.StartingThread;
 import de.cuelex.logger.thread.StoppingThread;
 import de.cuelex.logger.thread.UpdateThread;
@@ -47,10 +47,10 @@ public class Launcher {
     public void restart(){
         if(getInstance().cloudRunning){
             stop();
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.SUCCESS, Launcher.class, "TavaniaCloud successfully stopped!");
+            ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "TavaniaCloud successfully stopped!");
             start();
         }else{
-            ConsoleLogger.getInstance().log(ConsoleLoggerType.ERROR, Launcher.class, "TavaniaCloud couldn't restart, because the system is not running!");
+            ConsoleLogger.getInstance().log(LoggerType.ERROR, Launcher.class, "TavaniaCloud couldn't restart, because the system is not running!");
         }
     }
 
