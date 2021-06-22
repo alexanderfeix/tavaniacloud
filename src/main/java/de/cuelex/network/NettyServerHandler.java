@@ -2,6 +2,8 @@ package de.cuelex.network;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.LoggerType;
+import de.cuelex.main.TavaniaCloud;
+import de.cuelex.user.client.TavaniaClient;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -51,7 +53,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         }
         ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
         channels.add(ctx.channel());
-        //new FileServerThread().run();
+        new TavaniaClient(TavaniaClient.getClients().size(), incoming.localAddress().toString(), "TestClient", "Germany", TavaniaCloud.getInstance().getGregorianDate().toString());
     }
 
     @Override
@@ -60,7 +62,12 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has disconnected!\n");
         }
-        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
+        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has disconnected!");
+        TavaniaClient tavaniaClient = TavaniaClient.clientIpAddress.get(incoming.localAddress().toString());
+        TavaniaClient.clients.remove(tavaniaClient);
+        TavaniaClient.clientId.remove(tavaniaClient.getId());
+        TavaniaClient.clientIpAddress.remove(tavaniaClient.getIpAddress());
+        //TODO: Remove from Database
         channels.remove(ctx.channel());
         ctx.close();
     }

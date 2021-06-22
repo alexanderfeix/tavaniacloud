@@ -1,5 +1,7 @@
 package de.cuelex.user.client;
 
+import de.cuelex.main.TavaniaCloud;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +17,7 @@ public class TavaniaClient {
 
     public static ArrayList<TavaniaClient> clients = new ArrayList<>();
     public static HashMap<Integer, TavaniaClient> clientId = new HashMap<>();
+    public static HashMap<String, TavaniaClient> clientIpAddress = new HashMap<>();
     public int id;
     public String ipAddress;
     public String username;
@@ -27,6 +30,10 @@ public class TavaniaClient {
         this.username = username;
         this.location = location;
         this.connectionDate = connectionDate;
+        TavaniaCloud.getInstance().getMySQLClientAsnycHandler().createClientAsync(id, ipAddress, username, location, connectionDate);
+        clients.add(this);
+        clientId.put(id, this);
+        clientIpAddress.put(ipAddress, this);
     }
 
     public static ArrayList<TavaniaClient> getClients() {
