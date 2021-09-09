@@ -1,10 +1,10 @@
 package de.cuelex.main;
 
 import de.cuelex.database.DatabaseHandler;
-import de.cuelex.database.mysql.MySQLClientManager;
-import de.cuelex.database.mysql.MySQLConnectionHandler;
-import de.cuelex.database.mysql.MySQLHandler;
+import de.cuelex.database.mysql.*;
 import de.cuelex.database.mysql.async.MySQLClientAsnycHandler;
+import de.cuelex.database.mysql.async.MySQLCloudAsyncHandler;
+import de.cuelex.database.mysql.async.MySQLLogAsyncHandler;
 import de.cuelex.database.redis.RedisConnectionHandler;
 import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.command.CommandExecuter;
@@ -112,6 +112,27 @@ public class TavaniaCloud {
 
     public MySQLClientAsnycHandler getMySQLClientAsnycHandler() {
         return mySQLClientAsnycHandler;
+    }
+
+    public MySQLLogManager mySQLLogManager = new MySQLLogManager();
+    public MySQLCloudManager mySQLCloudManager = new MySQLCloudManager();
+    public MySQLCloudAsyncHandler mySQLCloudAsyncHandler = new MySQLCloudAsyncHandler();
+    public MySQLLogAsyncHandler mySQLLogAsyncHandler = new MySQLLogAsyncHandler();
+
+    public MySQLLogManager getMySQLLogManager() {
+        return mySQLLogManager;
+    }
+
+    public MySQLCloudManager getMySQLCloudManager() {
+        return mySQLCloudManager;
+    }
+
+    public MySQLCloudAsyncHandler getMySQLCloudAsyncHandler() {
+        return mySQLCloudAsyncHandler;
+    }
+
+    public MySQLLogAsyncHandler getMySQLLogAsyncHandler() {
+        return mySQLLogAsyncHandler;
     }
 
     public static void main(String[] args) {

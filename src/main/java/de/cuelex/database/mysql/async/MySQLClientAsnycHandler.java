@@ -14,6 +14,10 @@ import java.util.concurrent.CompletableFuture;
 */
 public class MySQLClientAsnycHandler {
 
+    public void createSQLTableAsync() {
+        CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLClientManager().createSQLTable());
+    }
+
     public void createClientAsync(int clientId, String ipAddress, String username, String location, String connectionDate) {
         CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLClientManager().createClient(clientId, ipAddress, username, location, connectionDate));
     }

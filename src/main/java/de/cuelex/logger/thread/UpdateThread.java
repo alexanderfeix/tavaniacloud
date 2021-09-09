@@ -2,7 +2,6 @@ package de.cuelex.logger.thread;
 
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.LoggerType;
-import de.cuelex.main.TavaniaCloud;
 
 /*
 
@@ -19,15 +18,15 @@ public class UpdateThread implements Runnable{
         /*
             Getting data from website to check the newest available version
          */
-        TavaniaCloud.getInstance().getJsonWebDataHandler().getDataFromWesbite("https://cuelex.de/version.json");
-        String latestVersion = TavaniaCloud.getInstance().getJsonWebDataHandler().getJsonObject().getString("homecloud-version");
+        //TODO: TavaniaCloud.getInstance().getJsonWebDataHandler().getDataFromWesbite("https://cuelex.de/version.json");
+        //TODO: String latestVersion = TavaniaCloud.getInstance().getJsonWebDataHandler().getJsonObject().getString("homecloud-version");
         /*
             Checking if current version is equal to the latest
          */
-        if (TavaniaCloud.getInstance().getVersionManager().getCurrentVersion().equalsIgnoreCase(latestVersion)) {
-            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, UpdateThread.class, "Latest version " + latestVersion + " installed!");
-        } else {
-            ConsoleLogger.getInstance().log(LoggerType.WARNING, UpdateThread.class, "New update available! Check out: https://cuelex.de/homecloud");
-        }
+        //TODO: if (TavaniaCloud.getInstance().getVersionManager().getCurrentVersion().equalsIgnoreCase(latestVersion)) {
+        //TODO:   ConsoleLogger.getInstance().log(LoggerType.INFORMATION, UpdateThread.class, "Latest version " + latestVersion + " installed!");
+        //TODO: } else {
+        //TODO:    ConsoleLogger.getInstance().log(LoggerType.WARNING, UpdateThread.class, "New update available! Check out: https://cuelex.de/homecloud");
+        //TODO:  }
     }
 }

@@ -61,7 +61,7 @@ public class MySQLLogManager {
      */
     public void createLog(int id, String date, String message) {
         try {
-            PreparedStatement ps = TavaniaCloud.getInstance().getMySQLConnectionHandler().connection.prepareStatement("INSERT INTO Logs (LogId, LogName, Message) VALUES (?, ?, ?)");
+            PreparedStatement ps = TavaniaCloud.getInstance().getMySQLConnectionHandler().connection.prepareStatement("INSERT INTO Logs (LogId, LogDate, Message) VALUES (?, ?, ?)");
             ps.setInt(1, id);
             ps.setString(2, date);
             ps.setString(3, message);

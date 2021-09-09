@@ -126,6 +126,12 @@ public class DatabaseHandler {
         initializeData();
         if (getDatabaseType().equalsIgnoreCase("MYSQL")) {
             TavaniaCloud.getInstance().getMySQLConnectionHandler().connect();
+            /*
+                Creating database entry if not exists
+             */
+            TavaniaCloud.getInstance().getMySQLCloudAsyncHandler().createSQLTableAsync();
+            TavaniaCloud.getInstance().getMySQLLogAsyncHandler().createSQLTableAsync();
+            TavaniaCloud.getInstance().getMySQLLogAsyncHandler().createLogAsync(0, TavaniaCloud.getInstance().getGregorianDate().toString(), "Connected to MySQL-Database successfully.");
         } else if (getDatabaseType().equalsIgnoreCase("REDIS")) {
             TavaniaCloud.getInstance().getRedisConnectionHandler().connect();
             TavaniaCloud.getInstance().getRedisConnectionHandler().openConnection();
