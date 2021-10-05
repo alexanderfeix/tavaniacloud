@@ -9,6 +9,8 @@ import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.LoggerType;
+import de.cuelex.main.TavaniaCloud;
+import de.cuelex.util.YamlFileHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +35,7 @@ public class GoogleAuthenticationHandler {
     private final GoogleAuthenticatorKey googleAuthenticatorKey = googleAuthenticator.createCredentials();
     private String googleAuthKey;
     private int keyPW;
-    String barCodeUrl = getGoogleAuthenticatorBarCode(googleAuthenticatorKey.getKey(), "taventix@gmail.com", "TavaniaCloud");
+    String barCodeUrl;
     public boolean isAuthorized() {
         return isAuthorized;
     }
@@ -50,6 +52,7 @@ public class GoogleAuthenticationHandler {
         ConsoleLogger.getInstance().log(LoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Your 2FA-Code is: " + key);
         ConsoleLogger.getInstance().log(LoggerType.INFORMATION, GoogleAuthenticationHandler.class, "Please type in your Auth-Code.");
         setGoogleAuthKey(key);
+        barCodeUrl = getGoogleAuthenticatorBarCode(googleAuthenticatorKey.getKey(), TavaniaCloud.getInstance().getYamlFileHandler().getConfigFile().getString("GoogleAuthenticaterAccount"), "TavaniaCloud");
         try {
             createQRCode(barCodeUrl, "qr.png", 300, 300);
             JFrame frame = new JFrame();

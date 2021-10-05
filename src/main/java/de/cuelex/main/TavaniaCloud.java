@@ -135,6 +135,12 @@ public class TavaniaCloud {
         return mySQLLogAsyncHandler;
     }
 
+    public MySQLBlacklistManager mySQLBlacklistManager = new MySQLBlacklistManager();
+
+    public MySQLBlacklistManager getMySQLBlacklistManager() {
+        return mySQLBlacklistManager;
+    }
+
     public static void main(String[] args) {
         getInstance().getLauncher().start();
     }

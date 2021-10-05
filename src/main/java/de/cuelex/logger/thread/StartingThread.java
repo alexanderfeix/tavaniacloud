@@ -26,11 +26,17 @@ public class StartingThread implements Runnable{
         ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "Started TavaniaCloud successfully!");
         createConfigFiles();
         //authorize();
+        /*
         if (!TavaniaCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {
             TavaniaCloud.getInstance().getDatabaseHandler().configureDatabase();
         } else {
             TavaniaCloud.getInstance().getDatabaseHandler().setDatabaseConfigured(true);
             TavaniaCloud.getInstance().getDatabaseHandler().connectToDatabase();
+        }
+        */
+        //TODO: DELETE WHEN DATABASE IS IN USE
+        if (!TavaniaCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")) {
+            TavaniaCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
         }
     }
 

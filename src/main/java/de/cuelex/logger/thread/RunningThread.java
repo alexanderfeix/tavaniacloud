@@ -19,7 +19,9 @@ public class RunningThread implements Runnable{
     @Override
     public void run() {
         TavaniaCloud.getInstance().getCommandExecuter().implementCommands();
-        while (TavaniaCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {
+        //TODO: ACIVATE WHEN DATABSE IS IN USE while (TavaniaCloud.getInstance().getDatabaseHandler().isDatabaseConfigured()) {
+        //TODO: DELETE while(true) when database is in use
+        while(true){
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             boolean exists = TavaniaCloud.getInstance().getCommandExecuter().dispatchCommand(input);

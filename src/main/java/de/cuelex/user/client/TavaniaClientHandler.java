@@ -34,7 +34,7 @@ public class TavaniaClientHandler {
     }
 
     public void listClients() {
-        if (TavaniaClient.clients == null) {
+        if (TavaniaClient.clients.size() == 0) {
             ConsoleLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, "No clients are currently connected.");
             return;
         }

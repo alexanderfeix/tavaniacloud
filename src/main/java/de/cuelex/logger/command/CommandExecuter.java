@@ -46,6 +46,7 @@ public class CommandExecuter {
         register(new VersionCommand("version"));
         register(new StopCommand("stop"));
         register(new RestartCommand("restart"));
+        register(new ClientCommand("client"));
     }
 
     public HashMap<String, Command> getCommandHashMap() {

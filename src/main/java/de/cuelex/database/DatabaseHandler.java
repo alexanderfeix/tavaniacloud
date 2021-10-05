@@ -136,9 +136,12 @@ public class DatabaseHandler {
             TavaniaCloud.getInstance().getRedisConnectionHandler().connect();
             TavaniaCloud.getInstance().getRedisConnectionHandler().openConnection();
         }
+        /* TODO: ENABLE WHEN DATABSE IS IN USE
         if (!TavaniaCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")) {
             TavaniaCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
         }
+
+         */
     }
 
     /**
