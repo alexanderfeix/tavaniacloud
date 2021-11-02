@@ -4,6 +4,9 @@ import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.LoggerType;
 
+import java.util.HashMap;
+import java.util.Scanner;
+
 /*
 
     Copyright © 2019 Alexander F.
@@ -13,9 +16,24 @@ import de.cuelex.logger.LoggerType;
     
 */
 public class StoppingThread implements Runnable{
+
+
+    boolean exitMethod = false;
     @Override
     public void run() {
-        ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Stopping TavaniaCloud...");
-        ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "Stopped TavaniaCloud successfully!");
+        /*
+        while(!exitMethod) {
+            ConsoleLogger.getInstance().log(LoggerType.INFORMATION, StoppingThread.class, "Are you sure to stop TavaniaCloud? <yes> to confirm.");
+            Scanner scanner = new Scanner(System.in);
+            String next = scanner.next();
+            if(next.equalsIgnoreCase("yes")){
+                ConsoleLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Stopping TavaniaCloud...");
+                System.exit(0);
+                ConsoleLogger.getInstance().log(LoggerType.SUCCESS, Launcher.class, "Stopped TavaniaCloud successfully!");
+            }else if (next.equalsIgnoreCase("no")){
+                exitMethod = true;
+            }
+        }
+         */
     }
 }

@@ -11,7 +11,7 @@ package de.cuelex.util;
 public class VersionManager {
 
     public String getCurrentVersion() {
-        return "A-0.0.8";
+        return "A-0.0.1";
     }
     private String latestVersion;
     public String getLatestVersion() {

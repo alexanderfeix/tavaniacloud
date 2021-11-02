@@ -67,7 +67,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         TavaniaClient.clients.remove(tavaniaClient);
         TavaniaClient.clientId.remove(tavaniaClient.getId());
         TavaniaClient.clientIpAddress.remove(tavaniaClient.getIpAddress());
-        //TODO: Remove from Database
+        TavaniaCloud.getInstance().getMySQLClientManager().delete(tavaniaClient.getId());
         channels.remove(ctx.channel());
         ctx.close();
     }
