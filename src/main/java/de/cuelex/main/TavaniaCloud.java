@@ -2,6 +2,7 @@ package de.cuelex.main;
 
 import de.cuelex.database.DatabaseHandler;
 import de.cuelex.database.mysql.*;
+import de.cuelex.database.mysql.async.MySQLBlacklistHandler;
 import de.cuelex.database.mysql.async.MySQLClientAsnycHandler;
 import de.cuelex.database.mysql.async.MySQLCloudAsyncHandler;
 import de.cuelex.database.mysql.async.MySQLLogAsyncHandler;
@@ -139,6 +140,12 @@ public class TavaniaCloud {
 
     public MySQLBlacklistManager getMySQLBlacklistManager() {
         return mySQLBlacklistManager;
+    }
+
+    public MySQLBlacklistHandler mySQLBlacklistHandler = new MySQLBlacklistHandler();
+
+    public MySQLBlacklistHandler getMySQLBlacklistHandler() {
+        return mySQLBlacklistHandler;
     }
 
     public static void main(String[] args) {

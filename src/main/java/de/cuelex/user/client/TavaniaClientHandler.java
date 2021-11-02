@@ -1,6 +1,7 @@
 package de.cuelex.user.client;
 
 import de.cuelex.logger.ConsoleLogger;
+import de.cuelex.logger.FileLogger;
 import de.cuelex.logger.LoggerType;
 
 /*
@@ -18,6 +19,7 @@ public class TavaniaClientHandler {
         TavaniaClient.clients.add(tavaniaClient);
         TavaniaClient.clientId.put(id, tavaniaClient);
         ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaClientHandler.class, username + "successfully registered.");
+        FileLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, "Connected client " + username + " with ID: " + id);
     }
 
     public void removeClient(int id) {
@@ -31,6 +33,7 @@ public class TavaniaClientHandler {
         TavaniaClient.clients.remove(tavaniaClient);
         TavaniaClient.clientId.remove(id);
         ConsoleLogger.getInstance().log(LoggerType.SUCCESS, TavaniaClientHandler.class, "User with ID: " + id + " successfully removed.");
+        FileLogger.getInstance().log(LoggerType.INFORMATION, TavaniaClientHandler.class, "Disconnected client with ID: " + id);
     }
 
     public void listClients() {

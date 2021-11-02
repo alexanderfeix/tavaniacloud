@@ -10,7 +10,7 @@ public class MySQLBlacklistHandler {
         CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLBlacklistManager().createSQLTable());
     }
 
-    public void createClientAsync(int clientId, String clientName, String banDate, String banResason) {
+    public void banClientAsync(int clientId, String clientName, String banDate, String banResason) {
         CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLBlacklistManager().registerBlacklistEntry(clientId, clientName, banDate, banResason));
     }
 
@@ -46,8 +46,8 @@ public class MySQLBlacklistHandler {
      *
      * @param id client-id
      */
-    public void deleteAsyncById(int id) {
-        CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLBlacklistManager().unbanClient(id));
+    public void deleteAsyncById(int id, String reason) {
+        CompletableFuture.runAsync(() -> TavaniaCloud.getInstance().getMySQLBlacklistManager().unbanClient(id, reason));
     }
 
 }

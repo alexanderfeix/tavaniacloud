@@ -1,5 +1,7 @@
 package de.cuelex.database.mysql;
 
+import de.cuelex.logger.FileLogger;
+import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
 
 import java.sql.PreparedStatement;
@@ -137,12 +139,13 @@ public class MySQLBlacklistManager {
      *
      * @param id Client-id
      */
-    public void unbanClient(int id) {
+    public void unbanClient(int id, String reason) {
         try {
             PreparedStatement ps = TavaniaCloud.getInstance().getMySQLConnectionHandler().connection.prepareStatement("DELETE FROM Blacklist WHERE ClientId = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
+            FileLogger.getInstance().log(LoggerType.INFORMATION, MySQLBlacklistManager.class, "Unbanned " + id + " for reason: " + reason);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package de.cuelex.launcher;
 
 import de.cuelex.logger.ConsoleLogger;
+import de.cuelex.logger.FileLogger;
 import de.cuelex.logger.LoggerType;
 import de.cuelex.logger.thread.StartingThread;
 import de.cuelex.logger.thread.StoppingThread;
@@ -35,6 +36,7 @@ public class Launcher {
 
     public void start() {
         getInstance().cloudRunning = true;
+        FileLogger.getInstance().log(LoggerType.INFORMATION, Launcher.class, "Starting launcher, starting threads");
         TavaniaCloud.getInstance().getTavaniaThread().startThread(new UpdateThread(), "UpdateThread");
         TavaniaCloud.getInstance().getTavaniaThread().startThread(new StartingThread(), "StartingThread");
     }
