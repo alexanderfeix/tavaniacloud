@@ -51,9 +51,20 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has connected!\n");
         }
+        //TESTING:
+
         ConsoleLogger.getInstance().log(LoggerType.INFORMATION, NettyServerHandler.class, incoming.remoteAddress() + " has connected!");
         channels.add(ctx.channel());
-        new TavaniaClient(TavaniaClient.getClients().size(), incoming.localAddress().toString(), "TestClient", "Germany", TavaniaCloud.getInstance().getGregorianDate().toString());
+        while (true){
+            incoming.writeAndFlush("date-today_" + TavaniaCloud.getInstance().getGregorianDate().toString());
+            System.out.println("SENT!");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        //new TavaniaClient(TavaniaClient.getClients().size(), incoming.localAddress().toString(), "TestClient", "Germany", TavaniaCloud.getInstance().getGregorianDate().toString());
     }
 
     @Override

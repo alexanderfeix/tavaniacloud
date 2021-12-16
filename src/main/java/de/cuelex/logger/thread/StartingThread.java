@@ -4,6 +4,7 @@ import de.cuelex.launcher.Launcher;
 import de.cuelex.logger.ConsoleLogger;
 import de.cuelex.logger.LoggerType;
 import de.cuelex.main.TavaniaCloud;
+import de.cuelex.network.NettyServerConnection;
 import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class StartingThread implements Runnable{
         if (!TavaniaCloud.getInstance().getTavaniaThread().getRunningThreads().toString().contains("RunningThread")) {
             TavaniaCloud.getInstance().getTavaniaThread().startThread(new RunningThread(), "RunningThread");
         }
+        new NettyServerConnection().startServer(23500, true);
     }
 
     /**
